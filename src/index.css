@@ -3,6 +3,12 @@ html {
   overflow-y: scroll;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
@@ -15,4 +21,5 @@ body {
   min-height: 100vh;
   background: #0b0f12;
   color: rgba(255, 255, 255, 0.9);
+  overflow-x: hidden;
 }
