@@ -314,3 +314,30 @@ input[type="text"]:focus {
     min-height: 320px;
   }
 }
+
+@media (max-width: 480px) {
+  :root {
+    --col-check: 16px;
+    --col-handle: 24px;
+    --col-action: 28px;
+    --row-pad-x: 0.6rem;
+    --row-gap: 0.5rem;
+  }
+
+  #root {
+    padding: 0.75rem;
+  }
+
+  .app {
+    padding: 0.75rem;
+  }
+
+  button,
+  input[type="text"] {
+    font-size: 0.95rem;
+  }
+
+  .todo-list {
+    padding-left: calc(var(--col-handle) + var(--row-gap));
+  }
+}
