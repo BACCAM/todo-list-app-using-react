@@ -1,0 +1,317 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+
+  background: #0f1419;
+}
+
+/* ===== Header ===== */
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.header .date {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+.header .time {
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+  margin-top: 0.25rem;
+}
+
+/* ===== Controls ===== */
+form {
+  width: 100%;
+}
+
+.auth {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.auth-wrapper {
+  min-height: 260px;
+  margin-bottom: 1.5rem;
+}
+
+.auth-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+button {
+  font: inherit;
+  background: #141a21;
+  color: inherit;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+
+  padding: 0.7rem 0.85rem;
+  cursor: pointer;
+
+  letter-spacing: 0.04em;
+}
+
+button:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.active {
+  border-color: rgba(124, 255, 196, 0.8);
+  background: #182226;
+}
+
+.primary-btn {
+  border-color: rgba(124, 255, 196, 0.8);
+  background: #182226;
+}
+
+/* ===== Inputs ===== */
+input[type="text"] {
+  font: inherit;
+  color: inherit;
+  background: #141a21;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+
+  padding: 0.75rem 0.85rem;
+  outline: none;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.04em;
+}
+
+input[type="text"]:focus {
+  border-color: rgba(124, 255, 196, 0.7);
+}
+
+/* ===== Grid System (proportional + aligned) ===== */
+:root {
+  --col-check: 20px;
+  --col-handle: 32px;
+  --col-action: 32px;
+  --row-pad-y: 0.75rem;
+  --row-pad-x: 0.85rem;
+  --row-gap: 0.75rem;
+  --row-radius: 8px;
+}
+
+.todo-row,
+.todo-item,
+.drag-overlay {
+  width: 100%;
+  display: grid;
+  grid-template-columns: var(--col-check) 1fr var(--col-action);
+  align-items: center;
+  column-gap: var(--row-gap);
+
+  padding: var(--row-pad-y) var(--row-pad-x);
+  margin-bottom: 0.5rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--row-radius);
+  background: #121820;
+
+  transition: border-color 120ms;
+  position: relative;
+}
+
+.todo-row:hover,
+.todo-item:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* column 1 placeholder in add row */
+.slot {
+  width: var(--col-check);
+  height: var(--col-check);
+}
+
+/* add row input looks inline */
+.add-row input[type="text"] {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.add-row input[type="text"]:focus {
+  border-color: transparent;
+  outline: none;
+}
+
+/* ===== Filters ===== */
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.hint {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin-left: 0.25rem;
+}
+
+.error {
+  color: #ff9b9b;
+  opacity: 1;
+}
+
+/* ===== List ===== */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  min-height: 260px;
+  /* leave room for the external handle column */
+  padding-left: calc(var(--col-handle) + var(--row-gap));
+}
+
+/* checkbox */
+.todo-checkbox {
+  width: var(--col-check);
+  height: var(--col-check);
+  accent-color: #7cffc4;
+  cursor: pointer;
+}
+
+.edit-input {
+  width: 100%;
+}
+
+/* completed */
+.completed {
+  color: #8a8a8a;
+  opacity: 0.65;
+}
+
+/* drag handle */
+.drag-handle {
+  width: var(--col-handle);
+  height: var(--col-handle);
+  padding: 0;
+  display: grid; /* for the overlay ghost too */
+  place-items: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none; /* IMPORTANT: makes dragging smoother on trackpad/touch */
+  position: absolute; /* sits just outside the bordered row */
+  left: calc(-1 * (var(--col-handle) + var(--row-gap)));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.drag-handle:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* delete button */
+.icon-btn {
+  width: var(--col-action);
+  height: var(--col-action);
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* overlay */
+.drag-overlay {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  border-color: rgba(124, 255, 196, 0.6);
+}
+
+.drag-overlay .drag-handle {
+  pointer-events: none; /* visual only while dragging */
+}
+
+.overlay-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.overlay-delete {
+  width: var(--col-action);
+  height: var(--col-action);
+  display: grid;
+  place-items: center;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 768px) {
+  #root {
+    padding: 2rem;
+  }
+
+  .app {
+    padding: 2rem;
+  }
+
+  .header {
+    margin-bottom: 1.25rem;
+  }
+
+  .header .time {
+    font-size: 1.9rem;
+  }
+
+  :root {
+    --col-check: 16px;
+    --col-handle: 32px;
+    --col-action: 32px;
+    --row-pad-y: 0.5rem;
+    --row-pad-x: 0.75rem;
+    --row-radius: 6px;
+  }
+
+  input[type="text"] {
+    padding: 0.6rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  button {
+    padding: 0.45rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  .todo-list {
+    margin-top: 1.5rem;
+    min-height: 320px;
+  }
+}

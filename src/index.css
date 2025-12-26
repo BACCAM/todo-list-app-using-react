@@ -1,0 +1,18 @@
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
+:root {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #0b0f12;
+  color: rgba(255, 255, 255, 0.9);
+}
